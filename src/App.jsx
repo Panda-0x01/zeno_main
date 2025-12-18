@@ -16,21 +16,6 @@ function App() {
           <FeatureSection />
           <HeroSection onOpenDocs={() => setIsDocsOpen(true)} />
         </div>
-        
-        {/* Deployment test indicator */}
-        <div style={{
-          position: 'fixed',
-          bottom: '10px',
-          right: '10px',
-          background: '#333',
-          color: 'white',
-          padding: '5px 10px',
-          borderRadius: '4px',
-          fontSize: '12px',
-          zIndex: 1000
-        }}>
-          v2.0 - Mobile Ready
-        </div>
       </div>
 
       {isDocsOpen && (
