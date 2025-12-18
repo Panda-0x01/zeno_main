@@ -203,11 +203,56 @@ const HeroSection = ({ onOpenDocs }) => {
 
         @media (max-width: 768px) {
           .hero-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
           }
 
           .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
+          }
+
+          .hero-description {
+            font-size: 0.9rem;
+          }
+
+          .button-group {
+            flex-direction: column;
+            align-items: stretch;
+          }
+
+          .btn {
+            justify-content: center;
+            width: 100%;
+          }
+
+          .feature-pills {
+            justify-content: center;
+          }
+
+          .tech-stack-items {
+            justify-content: center;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2rem;
+          }
+
+          .hero-subtitle {
+            font-size: 1rem;
+          }
+
+          .hero-description {
+            font-size: 0.875rem;
+          }
+
+          .pill {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+          }
+
+          .tech-item {
+            font-size: 0.8rem;
           }
         }
       `}</style>

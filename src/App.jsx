@@ -58,6 +58,19 @@ function App() {
             grid-template-columns: 1fr;
             gap: 2rem;
             padding: 2rem 0;
+            height: auto;
+            min-height: 100vh;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .grid {
+            gap: 1.5rem;
+            padding: 1rem 0;
+          }
+          
+          .modal-body {
+            max-height: calc(90vh - 6rem);
           }
         }
       `}</style>

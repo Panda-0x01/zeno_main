@@ -2,7 +2,7 @@ import React from 'react';
 import { Layers, Sparkles, Rocket, Lock, Keyboard, Package, FileText } from 'lucide-react';
 
 const DocumentationContent = () => (
-  <div style={{ color: '#a0a0a0', lineHeight: '1.6' }}>
+  <div style={{ color: '#a0a0a0', lineHeight: '1.6' }} className="documentation-content">
     <section style={{ marginBottom: '2rem' }}>
       <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
         <Layers size={20} />
@@ -197,6 +197,50 @@ npm run build:linux # Linux (AppImage, deb, rpm)`}
       </h3>
       <p style={{ fontSize: '0.875rem' }}>MIT License - Open source and free to use</p>
     </section>
+    
+    <style jsx>{`
+      .documentation-content {
+        font-size: 1rem;
+      }
+      
+      @media (max-width: 768px) {
+        .documentation-content h3 {
+          font-size: 1.125rem !important;
+        }
+        
+        .documentation-content pre {
+          font-size: 0.75rem !important;
+          padding: 0.75rem !important;
+        }
+        
+        .documentation-content ul li {
+          font-size: 0.875rem;
+        }
+        
+        .documentation-content code {
+          font-size: 0.75rem !important;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .documentation-content h3 {
+          font-size: 1rem !important;
+        }
+        
+        .documentation-content pre {
+          font-size: 0.7rem !important;
+          padding: 0.5rem !important;
+        }
+        
+        .documentation-content ul li {
+          font-size: 0.8rem;
+        }
+        
+        .documentation-content code {
+          font-size: 0.7rem !important;
+        }
+      }
+    `}</style>
   </div>
 );
 

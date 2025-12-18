@@ -1,7 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const DonutAnimation = () => {
   const preRef = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+  
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   useEffect(() => {
     let A = 0, B = 0;
@@ -78,17 +85,31 @@ const DonutAnimation = () => {
     };
   }, []);
   
+  const getFontSize = () => {
+    if (windowWidth <= 480) return '8px';
+    if (windowWidth <= 768) return '10px';
+    return '14px';
+  };
+
+  const getScale = () => {
+    if (windowWidth <= 480) return 'scale(0.7)';
+    if (windowWidth <= 768) return 'scale(0.9)';
+    return 'scale(1)';
+  };
+
   return (
     <pre 
       ref={preRef}
       style={{
         fontFamily: 'monospace',
-        fontSize: '14px',
+        fontSize: getFontSize(),
         lineHeight: '1',
         color: '#ffffff',
         whiteSpace: 'pre',
         margin: 0,
-        padding: 0
+        padding: 0,
+        transform: getScale(),
+        transformOrigin: 'center'
       }}
     />
   );

@@ -45,6 +45,28 @@ const FeatureSection = () => {
           0%, 100% { opacity: 0.5; }
           50% { opacity: 1; }
         }
+
+        @media (max-width: 768px) {
+          .feature-section {
+            gap: 1rem;
+            padding: 1rem 0;
+          }
+
+          .donut-wrapper {
+            transform: scale(0.9);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .donut-wrapper {
+            transform: scale(0.7);
+          }
+
+          .feature-label {
+            font-size: 0.8rem;
+            text-align: center;
+          }
+        }
       `}</style>
     </div>
   );

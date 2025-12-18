@@ -28,6 +28,14 @@ body {
   height: 100vh;
 }
 
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
 code {
   font-family: 'Courier New', monospace;
 }
@@ -39,6 +47,15 @@ code {
   height: 100vh;
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    height: auto;
+    min-height: 100vh;
+    align-items: flex-start;
+  }
 }
 
 /* Button Styles */
@@ -54,6 +71,20 @@ code {
   gap: 0.5rem;
   border: none;
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
 }
 
 .btn-primary {
@@ -114,6 +145,15 @@ code {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
+    max-height: 90vh;
+    border-radius: 12px;
+  }
+}
+
 .modal-header {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
@@ -164,4 +204,45 @@ code {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-tertiary);
+}
+
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover {
+    transform: none;
+  }
+  
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .modal-close:hover {
+    background-color: var(--bg-secondary);
+  }
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .modal-close {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+@media (max-width: 768px) {
+  * {
+    max-width: 100%;
+  }
+  
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
 }
