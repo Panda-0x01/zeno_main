@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection';
 import FeatureSection from './components/FeatureSection';
 import DocumentationContent from './components/DocumentationContent';
 import { X } from 'lucide-react';
+import './styles/responsive.css';
 
 function App() {
   const [isDocsOpen, setIsDocsOpen] = useState(false);
@@ -32,50 +33,7 @@ function App() {
         </div>
       )}
 
-      <style jsx>{`
-        .app {
-          height: 100vh;
-          overflow: hidden;
-        }
-        
-        /* Force mobile responsive layout */
 
-        .grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-          align-items: center;
-          height: 100vh;
-          width: 100%;
-        }
-
-        .modal-body {
-          max-height: calc(85vh - 8rem);
-          overflow-y: auto;
-          padding-right: 0.5rem;
-        }
-
-        @media (max-width: 1024px) {
-          .grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            padding: 2rem 0;
-            height: auto;
-            min-height: 100vh;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .grid {
-            gap: 1.5rem;
-            padding: 1rem 0;
-          }
-          
-          .modal-body {
-            max-height: calc(90vh - 6rem);
-          }
-        }
-      `}</style>
     </div>
   );
 }
