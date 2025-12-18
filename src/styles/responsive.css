@@ -38,12 +38,18 @@
     overflow-y: auto !important;
     height: auto !important;
     min-height: 100vh !important;
+    background: linear-gradient(45deg, #ff0000, #00ff00) !important; /* VERY OBVIOUS DEBUG */
   }
   
   .grid {
+    grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
     padding: 1rem 0 !important;
-    background: rgba(0, 255, 0, 0.1) !important; /* Debug: green tint for mobile */
+    background: rgba(255, 255, 0, 0.8) !important; /* BRIGHT YELLOW DEBUG */
+  }
+  
+  .mobile-test {
+    display: block !important; /* Show the mobile indicator */
   }
   
   .modal-body {
