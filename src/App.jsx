@@ -10,19 +10,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="mobile-test" style={{
-        display: 'none',
-        position: 'fixed',
-        top: '10px',
-        left: '10px',
-        background: 'red',
-        color: 'white',
-        padding: '10px',
-        zIndex: 9999,
-        fontSize: '20px'
-      }}>
-        MOBILE MODE ACTIVE!
-      </div>
+
       <div className="container">
         <div className="grid">
           <FeatureSection />
