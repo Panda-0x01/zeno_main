@@ -37,6 +37,8 @@ function App() {
           height: 100vh;
           overflow: hidden;
         }
+        
+        /* Force mobile responsive layout */
 
         .grid {
           display: grid;
