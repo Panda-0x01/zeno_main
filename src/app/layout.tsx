@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/zeno.png",
+    icon: "/icon.png",
   },
 };
 
