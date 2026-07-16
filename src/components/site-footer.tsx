@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { footerLinks, social } from "@/lib/content";
-import { ZenoMark } from "@/components/zeno-mark";
 
 export function SiteFooter() {
   return (
@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-10">
           <div className="col-span-2 sm:col-span-1">
             <a href="#top" className="flex items-center gap-2.5" aria-label="Zeno home">
-              <ZenoMark className="h-5 w-5 text-accent" />
+              <Image src="/zeno.png" alt="Zeno logo" width={20} height={20} className="rounded-sm" />
               <span className="font-display text-sm text-foreground">zeno</span>
             </a>
             <p className="mt-4 text-sm text-muted-2 leading-relaxed max-w-[220px]">

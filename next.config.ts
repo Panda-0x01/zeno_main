@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import * as path from "path";
 
 // React requires eval() in development mode for call-stack reconstruction.
 // 'unsafe-eval' is only added in the dev build; production keeps it strict.
@@ -36,6 +37,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    // Explicitly pin the workspace root so Turbopack can always resolve
+    // next/package.json regardless of how the dev server is launched.
+    root: path.resolve(__dirname),
+  },
   async headers() {
     return [
       {

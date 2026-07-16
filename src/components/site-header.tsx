@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { nav } from "@/lib/content";
-import { ZenoMark } from "@/components/zeno-mark";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -31,8 +31,8 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 sm:px-8 h-16">
         <a href="#top" className="flex items-center gap-2.5 shrink-0" aria-label="Zeno home">
-          <span className="neu neu-hover neu-press flex h-9 w-9 items-center justify-center rounded-[10px] text-foreground">
-            <ZenoMark className="h-4 w-4" />
+          <span className="neu neu-hover neu-press flex h-9 w-9 items-center justify-center rounded-[10px]">
+            <Image src="/zeno.png" alt="Zeno logo" width={28} height={28} className="rounded-sm" />
           </span>
         </a>
 
