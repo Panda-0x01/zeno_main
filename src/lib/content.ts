@@ -11,7 +11,7 @@ export const nav = [
 ];
 
 export const hero = {
-  eyebrow: "100% Free & Open Source · MIT License",
+  eyebrow: "Built for developers. Designed for everyone.",
   headline: "Your desktop, your model, your data.",
   sub: "Zeno is a cross-platform AI assistant that runs entirely on your machine — powered by Ollama, with voice in, voice out, and a plugin system you control. Nothing leaves your device unless you say so.",
   primaryCta: { label: "Join Wishlist", href: "#pricing" },
