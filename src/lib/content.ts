@@ -221,9 +221,9 @@ export const faq = [
       "Zeno builds installers for Windows (NSIS .exe), macOS (.dmg, notarization requires code signing), and Linux (.AppImage, .deb, .rpm) via npm run build:win, build:mac, and build:linux.",
   },
   {
-    question: "Is Zeno really free?",
+    question: "What technologies power Zeno?",
     answer:
-      "Yes. Zeno is 100% free and open source under the MIT License, including its third-party components such as Ollama, FastAPI, React, and Electron (Porcupine's wake-word engine has a proprietary free tier).",
+      "Yes. Zeno is built on trusted, industry-standard technologies including Ollama, FastAPI, React, and Electron. Some optional components, such as Porcupine's wake-word engine, are subject to their own licensing terms.",
   },
 ];
 
