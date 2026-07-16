@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+:root {
+  /* Neumorphism reads best against a single warm-gray base — the page and
+     every "raised" surface share this exact color and are separated only
+     by light/dark dual shadows, never by a change in fill or a hard border. */
+  --background: #e7e5de;
+  --background-elevated: #e7e5de;
+  --surface: #e7e5de;
+  --surface-2: #e7e5de;
+  --border-soft: rgba(17, 18, 15, 0.05);
+  --border-strong: rgba(17, 18, 15, 0.08);
+  --foreground: #24251f;
+  --muted: #5b5d52;
+  --muted-2: #93958a;
+  --ink: #24251f;
+  --ink-foreground: #f3f2ec;
+  --accent: #dd6440;
+  --accent-soft: #f0d9c8;
+  --accent-foreground: #fdf8f3;
+  --accent-text: #8a3c22;
+  --signal: #1f9d6f;
+  --indigo: #4a5ae8;
+  --danger: #c4432c;
+
+  /* Neumorphic dual-shadow pair, derived from the base surface color:
+     a cool, darker "recessed" tone and a warm, near-white "highlight" tone
+     standing in for a light source from the upper-left. */
+  --neu-dark: rgba(163, 157, 138, 0.55);
+  --neu-light: rgba(255, 255, 255, 0.9);
+  --neu-dark-soft: rgba(163, 157, 138, 0.32);
+  --neu-light-soft: rgba(255, 255, 255, 0.6);
+  --neu-line: rgba(36, 37, 31, 0.16);
+
+  --font-display: "IBM Plex Mono", "JetBrains Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border-soft: var(--border-soft);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
+  --color-signal: var(--signal);
+  --color-indigo: var(--indigo);
+  --color-danger: var(--danger);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--border-soft);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Visible keyboard focus for accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Faint grid texture used behind hero / signature sections */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(17, 18, 15, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 18, 15, 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-dot {
+  background-image: radial-gradient(rgba(17, 18, 15, 0.16) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Dot-matrix / LED-style display type, used sparingly for hero and stat
+   headlines. Clips a repeating dot pattern to the glyph shapes of a bold
+   monospace face so large type reads as a halftone sign rather than flat text. */
+.font-dot {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: transparent;
+  background-image: radial-gradient(circle at center, var(--foreground) 42%, transparent 44%);
+  background-size: 4px 4px;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.font-dot-invert {
+  background-image: radial-gradient(circle at center, var(--ink-foreground) 42%, transparent 44%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.glass {
+  background: rgba(231, 229, 222, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ---- Neumorphism (soft UI) ----
+   Every "raised" element is filled with the exact page background color and
+   separated from it purely by a dual light/dark shadow, as if pressed out
+   of the same sheet of material. `.neu-in` reverses the pair for a carved,
+   recessed look (used for chips/labels that sit "into" the page). Interactive
+   elements dim their shadow into an inset on `:active` to fake a physical
+   press.
+*/
+.neu {
+  background: var(--background);
+  box-shadow: 9px 9px 18px var(--neu-dark), -9px -9px 18px var(--neu-light);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.neu-hover:hover {
+  box-shadow: 11px 11px 22px var(--neu-dark), -11px -11px 22px var(--neu-light);
+}
+.neu-press:active {
+  box-shadow: inset 5px 5px 10px var(--neu-dark), inset -5px -5px 10px var(--neu-light);
+  transform: scale(0.98);
+}
+
+.neu-sm {
+  background: var(--background);
+  box-shadow: 5px 5px 10px var(--neu-dark-soft), -5px -5px 10px var(--neu-light-soft);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.neu-sm.neu-press:active {
+  box-shadow: inset 3px 3px 6px var(--neu-dark-soft), inset -3px -3px 6px var(--neu-light-soft);
+  transform: scale(0.97);
+}
+
+.neu-in {
+  background: var(--background);
+  box-shadow: inset 5px 5px 10px var(--neu-dark-soft), inset -5px -5px 10px var(--neu-light-soft);
+}
+
+.neu-in-lg {
+  background: var(--background);
+  box-shadow: inset 7px 7px 16px var(--neu-dark), inset -7px -7px 16px var(--neu-light);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.25s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
