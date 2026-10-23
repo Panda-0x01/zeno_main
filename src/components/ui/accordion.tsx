@@ -14,10 +14,7 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn(
-      "overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02] transition-colors data-[state=open]:border-white/[0.14] data-[state=open]:bg-white/[0.04]",
-      className
-    )}
+    className={cn("border-b border-line", className)}
     {...props}
   />
 ));
@@ -31,15 +28,13 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "group flex flex-1 items-center justify-between gap-4 px-5 py-5 text-left text-[15px] font-medium text-foreground transition-colors hover:text-accent-text sm:text-base",
+        "group flex flex-1 items-center justify-between gap-6 py-5 text-left text-[15px] font-medium text-ink transition-colors hover:text-accent-ink",
         className
       )}
       {...props}
     >
       {children}
-      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-muted transition-all duration-300 group-hover:border-white/20 group-hover:text-foreground group-data-[state=open]:rotate-45 group-data-[state=open]:border-accent/30 group-data-[state=open]:text-accent-text">
-        <Plus className="h-3.5 w-3.5" />
-      </span>
+      <Plus className="h-4 w-4 shrink-0 text-muted-2 transition-transform duration-200 group-hover:text-ink group-data-[state=open]:rotate-45" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
@@ -51,12 +46,12 @@ const AccordionContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+    className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
     {...props}
   >
     <div
       className={cn(
-        "px-5 pb-5 pr-10 text-sm leading-relaxed text-muted sm:text-[15px]",
+        "max-w-[68ch] pb-6 pr-8 text-[14px] leading-7 text-muted",
         className
       )}
     >

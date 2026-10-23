@@ -39,7 +39,7 @@ src/
     brand-icons.tsx     # GitHub / Discord / X marks (not in lucide)
     hero.tsx, trusted-by.tsx, features.tsx, how-it-works.tsx,
     benefits.tsx, pricing.tsx, faq.tsx, final-cta.tsx,
-    site-header.tsx, site-footer.tsx, countdown.tsx
+    site-header.tsx, site-footer.tsx
   lib/
     content.ts   # single source of truth for all page copy
     utils.ts     # cn() class-merging helper
@@ -48,21 +48,24 @@ next.config.ts   # security headers (CSP, HSTS, X-Frame-Options, etc.)
 
 ## Design system
 
-Modern dark SaaS: near-black canvas (`#060809`), emerald signal color with a
-violet secondary, translucent glass surfaces, one-pixel gradient hairlines,
-soft radial glows, and a product-window mockup in the hero. **Inter** carries
-the display/body type and **JetBrains Mono** is reserved for code, labels, and
-the terminal. Both are self-hosted through `next/font`, so the strict CSP in
+Light, editorial SaaS: a warm paper canvas (`#f7f5f0`), near-black ink, and a
+single vermillion signal colour (`#e34a1b`). Structure comes from one-pixel
+hairlines and whitespace rather than gradients, glass or glow. Cards are plain
+white surfaces with restrained shadows; dark is reserved for terminals and the
+closing CTA, where it adds contrast instead of atmosphere. **Geist** carries
+the display/body type and **Geist Mono** handles labels, numbers, and code.
+Both are self-hosted through `next/font`, so the strict CSP in
 `next.config.ts` stays intact.
 
 Signature UI pieces:
 
-- `app-preview.tsx` — three-pane chat window showing a local model session,
-  streaming answer, context meter, and "0 bytes uploaded" proof points.
-- `how-it-works.tsx` — interactive step tabs driving a live terminal panel.
-- `benefits.tsx` — permission-prompt and audit-log mockups for the security
-  story.
-- `features.tsx` — bento grid with a cursor-following spotlight on each card.
+- `app-preview.tsx` — a light three-pane desktop window (threads, chat,
+  session rail) with realistic chrome, model/context metadata, and a status bar.
+- `how-it-works.tsx` — step tabs driving a dark, copyable terminal panel.
+- `benefits.tsx` — a permission prompt and audit-log table built from the same
+  surface language as the app.
+- `features.tsx` — a numbered, hairline-separated capability index rather than
+  a card grid.
 
 ## Notes on content sourcing
 
@@ -76,10 +79,7 @@ Signature UI pieces:
   described as 100% free/MIT-licensed) — they were added to satisfy the brief's
   pricing requirement and are clearly marked as inferred in `content.ts`,
   framed as an optional hosted/support tier on top of the free app.
-- The countdown timer is a structural requirement from the brief, not a
-  product fact; it's labeled generically ("next feature drop") rather than as
-  a real commitment and lives in the closing CTA.
-- The stack row and stats band (`trustedBy`) use only facts from the brief
+- The stack row and stats band (`stats`) use only facts from the brief
   (2GB minimum RAM, zero telemetry, MIT license, three platforms).
 
 ## Deployment
@@ -92,5 +92,4 @@ npm run start
 ```
 
 Before going live, replace the placeholder domain (`https://zeno.example.com`)
-in `src/app/layout.tsx`, `robots.ts`, and `sitemap.ts`, and add a real
-`/public/og-image.png` (1200×630).
+in `src/app/layout.tsx`, `robots.ts`, and `sitemap.ts`.

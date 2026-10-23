@@ -1,124 +1,79 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowRight, Check, Terminal } from "lucide-react";
+import { ArrowUpRight, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { hero } from "@/lib/content";
 import { AppPreview } from "@/components/app-preview";
+import { hero, site } from "@/lib/content";
 
 export function Hero() {
   return (
-    <section
-      id="top"
-      className="relative overflow-hidden pb-20 pt-32 sm:pb-28 sm:pt-40"
-    >
-      {/* Ambient background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 grid-fade opacity-70"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[820px] hero-aurora"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[-120px] h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-accent/[0.07] blur-[120px] animate-drift"
-      />
+    <section id="top" className="relative border-b border-line">
+      <div className="container-page pt-28 sm:pt-32">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <span className="inline-flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="mono-label text-ink">
+              {site.version} · {hero.badge}
+            </span>
+          </span>
+          <span className="mono-label hidden text-muted-2 sm:inline">
+            Open source · MIT licensed
+          </span>
+        </div>
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.035] py-1.5 pl-3 pr-4 backdrop-blur-sm"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_2px_rgba(52,211,153,0.5)]" />
-            <span className="text-[12px] text-muted">{hero.eyebrow}</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-7 text-[42px] font-semibold leading-[0.98] tracking-[-0.045em] text-foreground text-balance sm:text-6xl lg:text-[78px]"
-          >
-            {hero.headlineLines.map((line, i) => (
-              <span
-                key={line}
-                className={
-                  i === hero.headlineLines.length - 1
-                    ? "block text-gradient"
-                    : "block"
-                }
-              >
-                {line}
+        <h1 className="mt-10 max-w-[20ch] text-[clamp(42px,7vw,78px)] font-semibold leading-[0.97] tracking-[-0.045em] text-ink">
+          {hero.headline.map((line, index) => {
+            const last = index === hero.headline.length - 1;
+            return (
+              <span key={line} className="block">
+                {last ? line.replace(/\.$/, "") : line}
+                {last ? <span className="text-accent">.</span> : " "}
               </span>
-            ))}
-          </motion.h1>
+            );
+          })}
+        </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.14 }}
-            className="mt-6 max-w-xl text-[15px] leading-[1.75] text-muted text-balance sm:text-[17px]"
-          >
+        <div className="mt-10 grid gap-8 border-t border-line pt-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+          <p className="max-w-[56ch] text-[16px] leading-7 text-muted sm:text-[17px] sm:leading-8">
             {hero.sub}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.22 }}
-            className="mt-9 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
-          >
-            <Button asChild size="lg" className="w-full sm:w-auto">
+          </p>
+          <div className="flex flex-col gap-2.5 sm:flex-row lg:justify-end">
+            <Button asChild size="lg">
               <a href={hero.primaryCta.href}>
                 {hero.primaryCta.label}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4" />
               </a>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="w-full sm:w-auto"
-            >
+            <Button asChild variant="outline" size="lg">
               <a href={hero.secondaryCta.href}>
-                <Terminal className="h-4 w-4 text-accent-text" />
+                <Terminal className="h-4 w-4 text-muted" />
                 {hero.secondaryCta.label}
               </a>
             </Button>
-          </motion.div>
-
-          <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.32 }}
-            className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
-            aria-label="Product highlights"
-          >
-            {hero.trust.map((item) => (
-              <li
-                key={item}
-                className="inline-flex items-center gap-1.5 text-[11px] text-muted-2"
-              >
-                <Check className="h-3 w-3 text-accent" />
-                {item}
-              </li>
-            ))}
-          </motion.ul>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 36, scale: 0.985 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto mt-16 max-w-5xl sm:mt-20"
-        >
-          <AppPreview />
-        </motion.div>
+        <ul className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 pb-1">
+          {hero.facts.map((fact) => (
+            <li
+              key={fact}
+              className="mono-label flex items-center gap-2 text-muted-2"
+            >
+              <span aria-hidden className="h-3 w-px bg-line-strong" />
+              {fact}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="container-page pb-8 pt-12 sm:pt-16">
+        <AppPreview />
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
+          <span className="mono-label text-muted-2">
+            Zeno desktop · local session
+          </span>
+          <span className="mono-label text-muted-2">
+            llama3.2:3b · CPU · 0 outbound requests
+          </span>
+        </div>
       </div>
     </section>
   );

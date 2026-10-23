@@ -1,16 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains",
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
@@ -19,11 +19,11 @@ const siteUrl = "https://zeno.example.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Zeno — Local AI Desktop Assistant",
+    default: "Zeno — A local AI assistant for your desktop",
     template: "%s · Zeno",
   },
   description:
-    "Zeno is a free, open-source, cross-platform desktop AI assistant powered by Ollama — with voice I/O, local-first privacy, and a plugin system you control.",
+    "Zeno is a free, open-source desktop AI assistant that runs on your own Ollama models. Voice in, voice out, encrypted local history, and a plugin system you control.",
   keywords: [
     "Zeno",
     "local AI assistant",
@@ -41,24 +41,15 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "Zeno",
-    title: "Zeno — Local AI Desktop Assistant",
+    title: "Zeno — A local AI assistant for your desktop",
     description:
-      "A free, open-source desktop AI assistant powered by Ollama. Voice I/O, local-first privacy, and a plugin system you control.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Zeno — Local AI Desktop Assistant",
-      },
-    ],
+      "A free, open-source desktop assistant that runs on local Ollama models. No account, no cloud, no telemetry.",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Zeno — Local AI Desktop Assistant",
+    card: "summary",
+    title: "Zeno — A local AI assistant for your desktop",
     description:
-      "A free, open-source desktop AI assistant powered by Ollama. Voice I/O, local-first privacy, and a plugin system you control.",
-    images: ["/og-image.png"],
+      "A free, open-source desktop assistant that runs on local Ollama models. No account, no cloud, no telemetry.",
   },
   robots: {
     index: true,
@@ -70,8 +61,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#060809",
-  colorScheme: "dark",
+  themeColor: "#f7f5f0",
+  colorScheme: "light",
 };
 
 const jsonLd = {
@@ -98,7 +89,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${geist.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
         {/*
@@ -112,7 +103,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-paper text-ink">
         {children}
       </body>
     </html>

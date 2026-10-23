@@ -1,167 +1,177 @@
-import {
-  Check,
-  CircleCheck,
-  Fingerprint,
-  Lock,
-  ScanEye,
-  ShieldCheck,
-} from "lucide-react";
+import { CircleCheck, Lock, ShieldCheck, Terminal } from "lucide-react";
 import { benefits } from "@/lib/content";
 import { SectionHeading } from "@/components/section-heading";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
+import { cn } from "@/lib/utils";
+
+const tags = ["AES-256-GCM", "PBKDF2", "SQLite", "Strict CSP"];
 
 const auditRows = [
-  { label: "Outbound request blocked", time: "just now" },
-  { label: "History encrypted at rest", time: "2 min ago" },
-  { label: "Plugin run in sandbox", time: "5 min ago" },
+  {
+    time: "14:32:07",
+    event: "Outbound request blocked",
+    status: "Blocked",
+    tone: "bg-accent",
+    text: "text-accent-ink",
+  },
+  {
+    time: "14:31:54",
+    event: "History encrypted at rest",
+    status: "Encrypted",
+    tone: "bg-success",
+    text: "text-success",
+  },
+  {
+    time: "14:29:10",
+    event: "Plugin run in sandbox",
+    status: "Sandboxed",
+    tone: "bg-warning",
+    text: "text-warning",
+  },
 ];
 
 export function Benefits() {
   return (
-    <section id="benefits" className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-0 top-1/4 h-[420px] w-[420px] rounded-full bg-violet/[0.05] blur-[110px]"
-      />
-      <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_0.92fr] lg:gap-20">
+    <section id="benefits" className="border-b border-line">
+      <div className="container-page py-20 sm:py-28">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
           <div>
             <SectionHeading
               eyebrow="Security & privacy"
-              title="A threat model, not a promise"
-              description="Local-first isn't a slogan on Zeno's landing page — it's the storage layer, the sandbox, and the confirmation prompt in front of every action."
+              title="A threat model, not a promise."
+              description="Local-first is not a slogan here. It is the storage layer, the sandbox, and the confirmation prompt in front of every action Zeno can take."
             />
 
-            <RevealGroup className="mt-10 space-y-6">
-              {benefits.map((b) => (
-                <RevealItem key={b.title} className="flex gap-4">
-                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-accent/20 bg-accent/[0.07]">
-                    <Check className="h-4 w-4 text-accent-text" />
-                  </span>
-                  <div>
-                    <h3 className="text-[14px] font-semibold tracking-tight text-foreground">
-                      {b.title}
-                    </h3>
-                    <p className="mt-1.5 max-w-md text-[13px] leading-[1.7] text-muted">
-                      {b.description}
-                    </p>
-                  </div>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-
-            <Reveal delay={0.2}>
-              <div className="mt-9 flex flex-wrap gap-2">
-                {["AES-256-GCM", "PBKDF2", "SQLite", "Strict CSP"].map(
-                  (tag) => (
-                    <span
-                      key={tag}
-                      className="mono-tag rounded-full border border-white/[0.07] bg-white/[0.025] px-2.5 py-1 text-[9px] text-muted-2"
-                    >
-                      {tag}
+            <ol className="mt-9 border-t border-line">
+              {benefits.map((benefit, index) => (
+                <Reveal key={benefit.title} delay={Math.min(index * 0.04, 0.16)}>
+                  <li className="grid grid-cols-[2rem_minmax(0,1fr)] gap-4 border-b border-line py-4">
+                    <span className="mono-label pt-1 text-muted-2">
+                      {String(index + 1).padStart(2, "0")}
                     </span>
-                  )
-                )}
-              </div>
+                    <div>
+                      <h3 className="flex items-center gap-2 text-[13.5px] font-semibold text-ink">
+                        <CircleCheck className="h-3.5 w-3.5 text-success" />
+                        {benefit.title}
+                      </h3>
+                      <p className="mt-1 max-w-[44ch] text-[12.5px] leading-6 text-muted">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+
+            <Reveal delay={0.18}>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="rounded border border-line bg-surface px-2 py-1 font-mono text-[10px] text-muted"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           </div>
 
-          <Reveal delay={0.1}>
-            <div className="relative mx-auto w-full max-w-[460px]">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -inset-8 rounded-[40px] bg-[radial-gradient(50%_50%_at_50%_50%,rgba(52,211,153,0.14),transparent_70%)] blur-2xl"
-              />
-
-              {/* Permission prompt mock */}
-              <div className="relative overflow-hidden rounded-2xl border border-white/[0.12] bg-[#0a0e11]/95 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.95)] backdrop-blur-xl">
-                <div className="flex items-center gap-2.5 border-b border-white/[0.07] px-5 py-3.5">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-amber-300/20 bg-amber-300/[0.08]">
-                    <Lock className="h-3.5 w-3.5 text-amber-200" />
+          <Reveal delay={0.08}>
+            <div className="mx-auto flex w-full max-w-[500px] flex-col gap-3">
+              {/* Permission request */}
+              <div className="overflow-hidden rounded-xl border border-line-strong bg-surface shadow-[var(--shadow-card)]">
+                <div className="flex items-center gap-2.5 border-b border-line px-4 py-3">
+                  <span className="flex h-6 w-6 items-center justify-center rounded border border-warning/25 bg-warning/[0.08]">
+                    <Lock className="h-3 w-3 text-warning" />
                   </span>
-                  <div>
-                    <p className="text-[12px] font-medium text-foreground">
+                  <div className="min-w-0">
+                    <p className="text-[12px] font-medium text-ink">
                       Permission required
                     </p>
                     <p className="font-mono text-[9px] text-muted-2">
-                      shell · requested by cleanup.py
+                      requested by cleanup.py
                     </p>
                   </div>
-                  <span className="ml-auto rounded-full border border-amber-300/20 bg-amber-300/[0.08] px-2 py-1 font-mono text-[8px] uppercase tracking-[0.1em] text-amber-200">
-                    Review
+                  <span className="ml-auto rounded border border-line px-1.5 py-0.5 font-mono text-[8.5px] uppercase tracking-[0.08em] text-muted">
+                    Shell
                   </span>
                 </div>
 
-                <div className="p-5">
-                  <div className="rounded-lg border border-white/[0.07] bg-black/40 px-3.5 py-3 font-mono text-[11px] text-muted">
-                    <span className="text-accent">$</span>{" "}
-                    <span className="text-foreground/90">
+                <div className="p-4">
+                  <div className="flex items-center gap-2 rounded-md bg-terminal px-3 py-2.5 font-mono text-[10.5px] text-terminal-text">
+                    <span className="text-accent-on-dark">$</span>
+                    <span className="truncate">
                       rm -rf ~/Library/Caches/old-builds
                     </span>
                   </div>
-                  <p className="mt-3 text-[12px] leading-relaxed text-muted">
+
+                  <p className="mt-3 text-[12px] leading-6 text-muted">
                     This command permanently deletes{" "}
-                    <span className="text-foreground">1.2 GB</span> of cached
-                    builds. Zeno never runs shell commands without asking.
+                    <span className="font-medium text-ink">1.2 GB</span> of
+                    cached builds. Zeno never runs shell commands on its own.
                   </p>
 
                   <div className="mt-4 flex items-center gap-2">
-                    <span className="flex h-9 flex-1 items-center justify-center rounded-[9px] border border-white/[0.1] bg-white/[0.03] text-[12px] font-medium text-muted">
+                    <span className="flex h-8 flex-1 items-center justify-center rounded-md border border-line-strong bg-surface text-[11.5px] font-medium text-ink">
                       Deny
                     </span>
-                    <span className="flex h-9 flex-[1.4] items-center justify-center gap-1.5 rounded-[9px] bg-[linear-gradient(135deg,#b8f7d8,#4ade80_60%,#22c55e)] text-[12px] font-semibold text-[#04120c]">
-                      <ShieldCheck className="h-3.5 w-3.5" />
+                    <span className="flex h-8 flex-[1.35] items-center justify-center gap-1.5 rounded-md bg-ink text-[11.5px] font-medium text-paper">
+                      <ShieldCheck className="h-3 w-3" />
                       Allow once
                     </span>
                   </div>
 
                   <div className="mt-3 flex items-center justify-between font-mono text-[9px] text-muted-2">
                     <span>expires in 28s</span>
-                    <span className="flex items-center gap-1">
-                      <Fingerprint className="h-2.5 w-2.5" />
-                      you approve every action
-                    </span>
+                    <span>every action needs approval</span>
                   </div>
                 </div>
               </div>
 
-              {/* Audit log mock, offset behind */}
-              <div className="relative z-10 -mt-3 ml-auto w-[92%] rotate-[1.2deg] overflow-hidden rounded-xl border border-white/[0.09] bg-[#0b0f12]/95 p-4 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)] backdrop-blur-md">
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-muted-2">
-                    <ScanEye className="h-3 w-3 text-accent-text" />
-                    audit log
+              {/* Audit log */}
+              <div className="overflow-hidden rounded-xl border border-line bg-surface">
+                <div className="flex items-center justify-between border-b border-line px-4 py-2.5">
+                  <span className="flex items-center gap-2">
+                    <Terminal className="h-3 w-3 text-muted-2" />
+                    <span className="mono-label text-[9px] text-muted">
+                      Audit log
+                    </span>
                   </span>
-                  <span className="rounded border border-white/[0.07] px-1.5 py-0.5 font-mono text-[8px] text-muted-2">
-                    local only
+                  <span className="font-mono text-[9px] text-muted-2">
+                    last 24 hours
                   </span>
                 </div>
-                <div className="mt-2.5 space-y-1">
+
+                <div className="divide-y divide-line">
                   {auditRows.map((row) => (
                     <div
-                      key={row.label}
-                      className="flex items-center gap-2 rounded-md px-1.5 py-1.5"
+                      key={row.time}
+                      className="grid grid-cols-[4.25rem_minmax(0,1fr)_auto] items-center gap-3 px-4 py-2.5"
                     >
-                      <CircleCheck className="h-3 w-3 shrink-0 text-accent" />
-                      <span className="text-[10.5px] text-muted">
-                        {row.label}
-                      </span>
-                      <span className="ml-auto font-mono text-[8px] text-muted-2">
+                      <span className="font-mono text-[9.5px] text-muted-2 tabular-nums">
                         {row.time}
+                      </span>
+                      <span className="truncate text-[11.5px] text-ink-soft">
+                        {row.event}
+                      </span>
+                      <span
+                        className={cn(
+                          "inline-flex items-center gap-1.5 font-mono text-[9px]",
+                          row.text
+                        )}
+                      >
+                        <span className={cn("h-1 w-1 rounded-full", row.tone)} />
+                        {row.status}
                       </span>
                     </div>
                   ))}
                 </div>
-              </div>
 
-              <div className="relative z-20 -mt-4 flex w-fit items-center gap-2 rounded-xl border border-white/[0.1] bg-[#0b0f12] px-3.5 py-2.5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.9)]">
-                <Lock className="h-3.5 w-3.5 text-accent-text" />
-                <span className="text-[11px] font-medium text-foreground">
-                  History encrypted
-                </span>
-                <span className="font-mono text-[9px] text-muted-2">
-                  AES-256-GCM
-                </span>
+                <div className="flex items-center justify-between border-t border-line bg-paper-2/50 px-4 py-2 font-mono text-[9.5px] text-muted-2">
+                  <span>stored locally</span>
+                  <span>~/.jarvis/logs/</span>
+                </div>
               </div>
             </div>
           </Reveal>

@@ -5,25 +5,25 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-sm font-medium tracking-tight transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-150 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper",
   {
     variants: {
       variant: {
-        // Primary CTA: mint-to-emerald gradient with a soft ambient glow.
         default:
-          "btn-glow bg-[linear-gradient(135deg,#b8f7d8_0%,#4ade80_52%,#22c55e_100%)] text-[#04120c] hover:brightness-105 active:brightness-95",
-        // Quiet glass button for secondary emphasis.
+          "border border-ink bg-ink text-paper hover:bg-[#2b271f] hover:border-[#2b271f]",
         outline:
-          "border border-white/12 bg-white/[0.035] text-foreground backdrop-blur-sm hover:border-white/20 hover:bg-white/[0.07]",
-        ghost: "text-muted hover:bg-white/[0.05] hover:text-foreground",
-        // Solid light button, used rarely for contrast on tinted panels.
-        ink: "bg-foreground text-background hover:bg-white",
-        link: "h-auto p-0 text-accent-text underline-offset-4 hover:underline",
+          "border border-line-strong bg-surface text-ink hover:border-ink/40 hover:bg-paper-2",
+        ghost: "text-muted hover:bg-paper-2 hover:text-ink",
+        invert:
+          "border border-paper bg-paper text-ink hover:bg-white hover:border-white",
+        invertOutline:
+          "border border-paper/25 text-paper hover:border-paper/50 hover:bg-paper/10 focus-visible:ring-offset-ink",
+        link: "h-auto p-0 text-accent-ink underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-5",
-        sm: "h-9 px-4 text-[13px]",
-        lg: "h-12 px-6 text-[15px]",
+        default: "h-10 px-4",
+        sm: "h-9 px-3.5 text-[13px]",
+        lg: "h-11 px-5 text-[14px]",
         icon: "h-10 w-10",
       },
     },

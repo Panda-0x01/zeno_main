@@ -9,87 +9,84 @@ export const metadata: Metadata = {
   description: "How Zeno handles data — local-first, with no telemetry by default.",
 };
 
+const codeClass =
+  "rounded border border-line bg-paper-2 px-1.5 py-0.5 font-mono text-[12px] text-ink";
+
 export default function PrivacyPage() {
   return (
     <>
       <SiteHeader />
-      <main className="relative flex-1 overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[560px] hero-aurora opacity-70"
-        />
-        <div className="relative mx-auto max-w-3xl px-5 pb-24 pt-32 sm:px-8">
+      <main id="main" className="flex-1">
+        <div id="top" />
+        <div className="mx-auto w-full max-w-[760px] px-5 pb-24 pt-28 sm:px-8 sm:pt-32">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-[12px] text-muted transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-1.5 text-[12.5px] text-muted transition-colors hover:text-ink"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back home
           </Link>
 
-          <div className="mt-7 flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_2px_rgba(52,211,153,0.45)]" />
-            <span className="mono-tag text-[10px] text-muted">Legal</span>
-          </div>
-          <h1 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-foreground sm:text-5xl">
+          <span className="mono-label rule-label mt-9 text-muted-2">Legal</span>
+          <h1 className="mt-4 text-[clamp(34px,5vw,46px)] font-semibold leading-[1.05] tracking-[-0.035em] text-ink">
             Privacy Policy
           </h1>
-          <p className="mt-3 text-[13px] text-muted-2">Last updated: 2026</p>
+          <p className="mt-3 font-mono text-[10.5px] uppercase tracking-[0.1em] text-muted-2">
+            Last updated: 2026
+          </p>
 
-          <div className="card-surface mt-10 space-y-8 rounded-2xl p-6 text-[14px] leading-[1.8] text-muted sm:p-10 sm:text-[15px]">
-            <section>
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
+          <div className="mt-10 border-t border-line">
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">
                 Local-first by default
               </h2>
-              <p>
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
                 Zeno is designed so that all data stays on your machine by
                 default. Chat history is stored locally in SQLite at
-                <code className="mx-1 rounded-md border border-white/10 bg-white/[0.05] px-1.5 py-0.5 font-mono text-[12px] text-accent-text">
-                  ~/.jarvis/history.db
-                </code>
+                <code className={`mx-1 ${codeClass}`}>~/.jarvis/history.db</code>
                 , and audit logs are written to
-                <code className="mx-1 rounded-md border border-white/10 bg-white/[0.05] px-1.5 py-0.5 font-mono text-[12px] text-accent-text">
-                  ~/.jarvis/logs/
-                </code>
-                . Nothing is uploaded to Zeno or any third party as part of
-                normal use.
+                <code className={`mx-1 ${codeClass}`}>~/.jarvis/logs/</code>.
+                Nothing is uploaded to Zeno or any third party as part of normal
+                use.
               </p>
             </section>
-            <section className="border-t border-white/[0.06] pt-8">
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
+
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">
                 No telemetry
               </h2>
-              <p>
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
                 Zeno collects zero analytics or tracking data. There is no
                 telemetry pipeline built into the desktop app.
               </p>
             </section>
-            <section className="border-t border-white/[0.06] pt-8">
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
-                Encryption
-              </h2>
-              <p>
+
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">Encryption</h2>
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
                 Chat history can optionally be encrypted at rest using a
                 password-derived key (PBKDF2 + AES-256-GCM). You control whether
                 encryption is enabled.
               </p>
             </section>
-            <section className="border-t border-white/[0.06] pt-8">
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
+
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">
                 Model providers
               </h2>
-              <p>
-                Zeno talks to a local Ollama instance running on your machine.
-                If you choose to enable optional cloud-connected features or
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
+                Zeno talks to a local Ollama instance running on your machine. If
+                you choose to enable optional cloud-connected features or
                 third-party integrations, their own privacy practices apply —
                 review them before enabling anything.
               </p>
             </section>
-            <section className="border-t border-white/[0.06] pt-8">
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
+
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">
                 Your responsibilities
               </h2>
-              <p>
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
                 As with any local-first tool, you are responsible for securing
                 your encryption password, reviewing any third-party plugin code
                 before installing it, and complying with the license terms of

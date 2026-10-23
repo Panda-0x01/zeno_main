@@ -1,201 +1,90 @@
-"use client";
-
-import type { MouseEvent, ReactNode } from "react";
 import {
-  ArrowRight,
+  ArrowUpRight,
   Blocks,
   Bot,
   Cpu,
+  Lock,
   Mic,
   MonitorSmartphone,
   ShieldCheck,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { features } from "@/lib/content";
 import { SectionHeading } from "@/components/section-heading";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
-import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/motion/reveal";
 
 const ICONS: Record<string, LucideIcon> = {
   Bot,
   Mic,
   ShieldCheck,
-  Sparkles,
+  Lock,
   Blocks,
   Cpu,
   MonitorSmartphone,
 };
 
-const TONES: Record<string, string> = {
-  "Voice in, voice out": "border-violet/20 bg-violet/[0.08] text-violet",
-  "Plugin system": "border-indigo/20 bg-indigo/[0.08] text-indigo",
-  "Cross-platform": "border-indigo/20 bg-indigo/[0.08] text-indigo",
-};
-
-function SpotlightCard({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  function handleMouseMove(event: MouseEvent<HTMLDivElement>) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--x", `${event.clientX - rect.left}px`);
-    event.currentTarget.style.setProperty("--y", `${event.clientY - rect.top}px`);
-  }
-
-  return (
-    <div
-      onMouseMove={handleMouseMove}
-      className={cn(
-        "card-surface card-hover group relative flex h-full flex-col overflow-hidden rounded-2xl p-6 sm:p-7",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-}
-
 export function Features() {
   return (
-    <section id="features" className="relative">
-      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeading
-            eyebrow="Platform"
-            title="Everything the assistant needs, none of the cloud it doesn't"
-            description="Zeno bundles model access, voice, security, and extensibility into one desktop app — each piece pulled straight from the codebase, not a marketing layer on top of it."
-          />
-          <Reveal delay={0.15} className="shrink-0">
-            <a
-              href="#how-it-works"
-              className="group inline-flex items-center gap-2 text-[13px] font-medium text-muted transition-colors hover:text-foreground"
-            >
-              See how it runs
-              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] transition-colors group-hover:border-accent/30 group-hover:text-accent-text">
-                <ArrowRight className="h-3 w-3" />
-              </span>
-            </a>
-          </Reveal>
-        </div>
+    <section id="features" className="border-b border-line">
+      <div className="container-page py-20 sm:py-28">
+        <div className="grid gap-12 lg:grid-cols-[340px_minmax(0,1fr)] lg:gap-20">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <SectionHeading
+              eyebrow="Platform"
+              title="Local inference, without the rough edges."
+              description="Model access, voice, permissions and plugins in one desktop app. Every capability below is built into the free, MIT-licensed core."
+            />
 
-        <RevealGroup
-          className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6"
-          stagger={0.07}
-        >
-          {/* Hero feature: Ollama */}
-          <RevealItem className="sm:col-span-2 lg:col-span-4">
-            <SpotlightCard>
-              <div className="flex flex-col gap-7 sm:flex-row sm:items-start sm:justify-between">
-                <div className="max-w-[320px]">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent/20 bg-accent/[0.08] text-accent-text">
-                    <Bot className="h-[18px] w-[18px]" />
-                  </div>
-                  <h3 className="mt-5 text-[15px] font-semibold tracking-tight text-foreground">
-                    {features[0].title}
-                  </h3>
-                  <p className="mt-2 text-[13.5px] leading-[1.65] text-muted">
-                    {features[0].description}
-                  </p>
-                  <div className="mt-5">
-                    <span className="mono-tag inline-flex items-center rounded-full border border-white/[0.07] bg-white/[0.02] px-2.5 py-1 text-[9px] text-muted-2">
-                      {features[0].meta}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Mini model manager */}
-                <div className="w-full shrink-0 rounded-xl border border-white/[0.08] bg-black/30 p-3 sm:max-w-[250px]">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-muted-2">
-                      Models
-                    </span>
-                    <span className="flex items-center gap-1 font-mono text-[9px] text-accent-text">
-                      <span className="h-1 w-1 rounded-full bg-accent" />
-                      ollama:11434
-                    </span>
-                  </div>
-                  <div className="mt-2.5 space-y-1">
-                    {[
-                      { name: "llama3.2:3b", state: "active", pct: 100 },
-                      { name: "mistral:7b", state: "ready", pct: 100 },
-                      { name: "phi-3:mini", state: "pull 64%", pct: 64 },
-                    ].map((m) => (
-                      <div
-                        key={m.name}
-                        className={cn(
-                          "rounded-lg border px-2.5 py-2",
-                          m.state === "active"
-                            ? "border-accent/25 bg-accent/[0.07]"
-                            : "border-white/[0.05] bg-white/[0.015]"
-                        )}
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="truncate font-mono text-[10px] text-foreground/90">
-                            {m.name}
-                          </span>
-                          <span
-                            className={cn(
-                              "shrink-0 font-mono text-[8px]",
-                              m.state === "active"
-                                ? "text-accent-text"
-                                : "text-muted-2"
-                            )}
-                          >
-                            {m.state}
-                          </span>
-                        </div>
-                        <div className="mt-1.5 h-[3px] overflow-hidden rounded-full bg-white/[0.06]">
-                          <div
-                            className="h-full rounded-full bg-gradient-to-r from-emerald-300 to-emerald-500"
-                            style={{ width: `${m.pct}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            <Reveal delay={0.12}>
+              <div className="mt-8 border-t border-line pt-4">
+                <a
+                  href="#how-it-works"
+                  className="group inline-flex min-h-6 items-center gap-2 text-[13px] font-medium text-ink"
+                >
+                  <span className="link-underline">See how it runs</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+                <p className="mt-3 max-w-[30ch] text-[12.5px] leading-6 text-muted-2">
+                  No hosted account, no feature gates, no lock-in.
+                </p>
               </div>
-            </SpotlightCard>
-          </RevealItem>
+            </Reveal>
+          </div>
 
-          {features.slice(1).map((f) => {
-            const Icon = ICONS[f.icon] ?? Sparkles;
-            const wide = f.title === "Low-end PC support" || f.title === "Cross-platform";
-            return (
-              <RevealItem
-                key={f.title}
-                className={wide ? "lg:col-span-3" : "lg:col-span-2"}
-              >
-                <SpotlightCard>
-                  <div
-                    className={cn(
-                      "flex h-10 w-10 items-center justify-center rounded-xl border",
-                      TONES[f.title] ??
-                        "border-accent/20 bg-accent/[0.08] text-accent-text"
-                    )}
-                  >
-                    <Icon className="h-[18px] w-[18px]" />
-                  </div>
-                  <h3 className="mt-5 text-[15px] font-semibold tracking-tight text-foreground">
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-[13.5px] leading-[1.65] text-muted">
-                    {f.description}
-                  </p>
-                  <div className="mt-auto pt-5">
-                    <span className="mono-tag inline-flex items-center rounded-full border border-white/[0.07] bg-white/[0.02] px-2.5 py-1 text-[9px] text-muted-2">
-                      {f.meta}
+          <ol className="border-t border-line">
+            {features.map((feature, index) => {
+              const Icon = ICONS[feature.icon] ?? Bot;
+              return (
+                <Reveal key={feature.title} delay={Math.min(index * 0.03, 0.18)}>
+                  <li className="group grid gap-4 border-b border-line py-6 sm:grid-cols-[2.25rem_minmax(0,1fr)_auto] sm:gap-6">
+                    <div className="flex items-center gap-3 sm:block">
+                      <span className="mono-label text-muted-2">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <Icon className="ml-auto h-4 w-4 text-muted-2 transition-colors group-hover:text-accent-ink sm:ml-0 sm:mt-3" />
+                    </div>
+
+                    <div>
+                      <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-ink">
+                        {feature.title}
+                      </h3>
+                      <p className="mt-1.5 max-w-[58ch] text-[13.5px] leading-6 text-muted">
+                        {feature.description}
+                      </p>
+                      <span className="mono-label mt-3 inline-block text-muted-2 sm:hidden">
+                        {feature.meta}
+                      </span>
+                    </div>
+
+                    <span className="mono-label hidden pt-1 text-right text-muted-2 sm:block">
+                      {feature.meta}
                     </span>
-                  </div>
-                </SpotlightCard>
-              </RevealItem>
-            );
-          })}
-        </RevealGroup>
+                  </li>
+                </Reveal>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );

@@ -13,45 +13,40 @@ export default function TermsPage() {
   return (
     <>
       <SiteHeader />
-      <main className="relative flex-1 overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[560px] hero-aurora opacity-70"
-        />
-        <div className="relative mx-auto max-w-3xl px-5 pb-24 pt-32 sm:px-8">
+      <main id="main" className="flex-1">
+        <div id="top" />
+        <div className="mx-auto w-full max-w-[760px] px-5 pb-24 pt-28 sm:px-8 sm:pt-32">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-[12px] text-muted transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-1.5 text-[12.5px] text-muted transition-colors hover:text-ink"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back home
           </Link>
 
-          <div className="mt-7 flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_2px_rgba(52,211,153,0.45)]" />
-            <span className="mono-tag text-[10px] text-muted">Legal</span>
-          </div>
-          <h1 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-foreground sm:text-5xl">
+          <span className="mono-label rule-label mt-9 text-muted-2">Legal</span>
+          <h1 className="mt-4 text-[clamp(34px,5vw,46px)] font-semibold leading-[1.05] tracking-[-0.035em] text-ink">
             Terms of Service
           </h1>
-          <p className="mt-3 text-[13px] text-muted-2">Last updated: 2026</p>
+          <p className="mt-3 font-mono text-[10.5px] uppercase tracking-[0.1em] text-muted-2">
+            Last updated: 2026
+          </p>
 
-          <div className="card-surface mt-10 space-y-8 rounded-2xl p-6 text-[14px] leading-[1.8] text-muted sm:p-10 sm:text-[15px]">
-            <section>
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
-                License
-              </h2>
-              <p>
+          <div className="mt-10 border-t border-line">
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">License</h2>
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
                 Zeno&apos;s desktop application is free and open source, released
-                under the MIT License. See the LICENSE file in the repository
-                for full terms.
+                under the MIT License. See the LICENSE file in the repository for
+                full terms.
               </p>
             </section>
-            <section className="border-t border-white/[0.06] pt-8">
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
+
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">
                 Third-party components
               </h2>
-              <p>
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
                 Zeno bundles or integrates with several third-party projects,
                 including Ollama, FastAPI, React, and Electron (all MIT
                 licensed), and optionally Whisper (MIT), VOSK (Apache 2.0), and
@@ -59,27 +54,27 @@ export default function TermsPage() {
                 Each retains its own license.
               </p>
             </section>
-            <section className="border-t border-white/[0.06] pt-8">
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
-                Disclaimer
-              </h2>
-              <p>
-                Zeno is a local-first AI assistant provided as-is. While
-                security and privacy are prioritized in its design, you are
-                responsible for securing your encryption password, reviewing
-                plugin code before installation, understanding the capabilities
-                and limitations of the models you run, and complying with the
+
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">Disclaimer</h2>
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
+                Zeno is a local-first AI assistant provided as-is. While security
+                and privacy are prioritized in its design, you are responsible
+                for securing your encryption password, reviewing plugin code
+                before installation, understanding the capabilities and
+                limitations of the models you run, and complying with the
                 licenses of Ollama and any models you use.
               </p>
             </section>
-            <section className="border-t border-white/[0.06] pt-8">
-              <h2 className="mb-2 text-[15px] font-semibold text-foreground">
+
+            <section className="border-b border-line py-8">
+              <h2 className="text-[15px] font-semibold text-ink">
                 Paid support plans
               </h2>
-              <p>
+              <p className="mt-2.5 text-[14px] leading-7 text-muted">
                 Optional hosted or supported plans referenced on this site are
-                offered separately from the free, open-source desktop app and
-                may carry their own terms, communicated at signup.
+                offered separately from the free, open-source desktop app and may
+                carry their own terms, communicated at signup.
               </p>
             </section>
           </div>
